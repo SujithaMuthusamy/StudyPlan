@@ -2,7 +2,7 @@ import studyPlan from '../models/StudyPlan.js';
 
 
 export const createStudyPlan = async (req, res) => {
-    const { planName, startDate, endDate, description, specialConstrains, aiSuggestions } = req.body;
+    const { planName, startDate, endDate, description, specialConstraints, aiSuggestion } = req.body;
 
 
     if (!planName || !startDate || !endDate || !description) {
@@ -16,8 +16,8 @@ export const createStudyPlan = async (req, res) => {
             startDate,
             endDate,
             description,
-            specialConstrains,
-            aiSuggestions
+            specialConstraints,
+            aiSuggestion
         });
         const savedPlan = await newStudyPlan.save();
         return res.status(201).json({message: 'plan created successfully'}, savedPlan);
@@ -38,7 +38,7 @@ export const getStudyPlans = async (req, res) => {
 }
 export const editStudyPlan = async (req, res) => {
     const { id } = req.params;
-    const { planName, startDate, endDate, description, specialConstrains, aiSuggestions } = req.body;
+    const { planName, startDate, endDate, description, specialConstraints, aiSuggestion } = req.body;
 
 
     const ifexist = await studyPlan.findById(id);
@@ -53,8 +53,8 @@ export const editStudyPlan = async (req, res) => {
             startDate,
             endDate,
             description,
-            specialConstrains,
-            aiSuggestions
+            specialConstraints,
+            aiSuggestion
         }, { new: true });
 
 
